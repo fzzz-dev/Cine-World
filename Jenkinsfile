@@ -2,16 +2,18 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
+        stage('Build Backend') {
             steps {
-                echo "Code cloned successfully"
+                script {
+                    docker.build("cineworld-backend:prod", "-f ./server/Dockerfile.prod ./server")
+                }
             }
         }
         
-        stage('Build Backend Image') {
+        stage('Build Frontend') {
             steps {
                 script {
-                    docker.build("cineworld-backend:latest", "./server")
+                    docker.build("cineworld-frontend:prod", "-f ./client/Dockerfile.prod ./client")
                 }
             }
         }
