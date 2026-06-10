@@ -15,7 +15,7 @@ services:
             - backend
 
     nginx:
-        image: ./nginx
+        build: ./nginx
         container_name: cineworld-nginx
         ports:
             - "80:80"
