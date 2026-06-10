@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`\n✦ CineBlood Server running on port ${PORT}`);
   console.log(`  Cloudinary cloud: ${process.env.CLOUDINARY_CLOUD_NAME || '⚠️  NOT SET'}`);
   console.log(`  MongoDB:          ${process.env.MONGO_URI ? 'configured' : '⚠️  NOT SET'}\n`);
