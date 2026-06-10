@@ -12,7 +12,7 @@ import postRoutes from './routes/posts.js';
 import commentRoutes from './routes/comments.js';
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 
 // Connect to MongoDB
 connectDB();
