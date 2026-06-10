@@ -1,19 +1,18 @@
 services:
     backend:
-        build: ./server
+        image: cineworld-backend:prod
         container_name: cine_world_backend
-        ports: 
+        ports:
             - "8000:8000"
         env_file:
             - .env
+            
     frontend:
-        build: 
-            context: ./client
-            dockerfile: Dockerfile.prod
+        image: cineworld-frontend:prod
         container_name: cine_world_frontend
         depends_on:
             - backend
-
+            
     nginx:
         build: ./nginx
         container_name: cineworld-nginx
@@ -21,5 +20,4 @@ services:
             - "80:80"
         depends_on:
             - frontend
-            - backend        
-
+            - backend

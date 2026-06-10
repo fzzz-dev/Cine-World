@@ -2,6 +2,14 @@ pipeline {
     agent any
     
     stages {
+        stage('Clean Old Images') {
+            steps {
+                script {
+                    sh 'docker system prune -f'
+                }
+            }
+        }
+        
         stage('Build Backend') {
             steps {
                 script {
@@ -18,11 +26,19 @@ pipeline {
             }
         }
         
-        stage('Deploy with Compose') {
+        stage('Deploy') {
             steps {
                 script {
-                    sh 'docker compose down'
-                    sh 'docker compose up -d'
+                    sh 'docker-compose down'
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+        
+        stage('Clean Up') {
+            steps {
+                script {
+                    sh 'docker image prune -f'
                 }
             }
         }
